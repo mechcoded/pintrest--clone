@@ -1,0 +1,12 @@
+<%- include('partials/header.ejs') %>
+
+<div class="min-h-screen bg-black text-white flex flex-col justify-center items-center p-4">
+  <img src="/images/uploads/<%= post.image %>" alt="Post Image" class="max-h-[80vh] rounded-xl shadow-lg mb-6" />
+
+  <h1 class="text-3xl font-bold mb-2"><%= post.title %></h1>
+  <p class="text-md text-zinc-300"><%= post.description %></p>
+
+  <a href="/feed" class="mt-6 text-blue-400 hover:underline">← Back to Feed</a>
+</div>
+
+<%- include('partials/footer.ejs') %>

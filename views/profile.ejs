@@ -1,0 +1,183 @@
+<%- include('partials/header.ejs') %>
+<div class="profile w-full min-h-screen bg-zinc-800 text-white pt-1 text-center mt-12 pt-1">
+  <form id="uploadform" action="/fileupload" method="POST" enctype="multipart/form-data" hidden>
+    <input type="file" name="image">
+  </form>
+
+  <div class="profdets flex flex-col items-center mt-20">
+    <div class="w-32 h-32 bg-zinc-200 rounded-full mb-4 overflow-hidden border-4 border-white shadow relative group">
+      <img class="w-full h-full object-cover" src="/images/uploads/<%= user.profileImage %>" alt="Profile">
+      <!-- Pencil icon overlay -->
+      <div id="uploadicon" class="absolute bottom-2 right-2 bg-zinc-700 rounded-full p-2 hover:bg-zinc-900 transition-opacity opacity-80 group-hover:opacity-100 cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-white">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 3.487a2.25 2.25 0 1 1 3.182 3.182L7.5 19.213l-4.182.465a.75.75 0 0 1-.83-.83l.465-4.182L16.862 3.487z" />
+        </svg>
+      </div>
+    </div>
+<h1 class="text-3xl font-bold text-white-800 mb-1 mt-5"><%= user.name %></h1>
+<h3 class="text-md text-zinc-500 mb-4">@<%= user.username %></h3>
+
+
+
+    <a href="/edit" class="mt-5 px-7 py-2 bg-zinc-700 rounded-full text-xs font-semibold text-white hover:bg-zinc-900 transition">Edit Profile</a>
+    <a href="/add" class="px-10 py-2 rounded-lg bg-red-700 text-xs font-semibold mt-4">Add new Post</a>
+
+    <div class="cards flex flex-wrap gap-10 px-40 mt-7 justify-center">
+      
+      <!-- Always visible: Uploaded Pins -->
+     <a href="/show/posts" class="block w-52 h-40 bg-zinc-200 rounded-lg overflow-hidden relative group">
+  <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-zinc-900/80 to-transparent p-4">
+    <h3 class="text-xl font-semibold text-white">Your Uploaded Pins</h3>
+    <h5 class="text-xs font-medium text-zinc-200"><%= user.posts.length %> Pins</h5>
+  </div>
+</a>
+
+
+      <% if (user.username === "mechcoded") { %>
+        <!-- All other boards only for Hailey -->
+        <div class="w-52 h-40 bg-zinc-200 rounded-lg overflow-hidden relative">
+          <img class="absolute inset-0 w-full h-full object-cover" src="https://i.pinimg.com/736x/0e/90/38/0e90386c788f04968c241c8052b20200.jpg" alt="">
+          <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-zinc-900/80 to-transparent p-4">
+            <h3 class="text-xl font-semibold text-white">Data analyst</h3>
+            <h5 class="text-xs font-medium text-zinc-200">68 Pins</h5>
+          </div>
+        </div>
+        <!-- (Repeat this block for all other boards... keeping only inside this if block) -->
+
+        <!-- Example: Web Development -->
+        <div class="w-52 h-40 bg-zinc-200 rounded-lg overflow-hidden relative">
+          <img class="absolute inset-0 w-full h-full object-cover" src="https://i.pinimg.com/736x/2b/d9/f7/2bd9f7d1ac37b422de2bddeb1cd85f78.jpg" alt="">
+          <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-zinc-900/80 to-transparent p-4">
+            <h3 class="text-xl font-semibold text-white">Web development core</h3>
+            <h5 class="text-xs font-medium text-zinc-200">28 Pins</h5>
+          </div>
+        </div>
+
+
+
+<!-- Make the card container relative and remove flex classes -->
+<div class="w-52 h-40 bg-zinc-200 rounded-lg overflow-hidden relative">
+  <img class="absolute inset-0 w-full h-full object-cover" src="https://i.pinimg.com/736x/1b/90/9e/1b909ef6cb9adad755ce1c83678db4a2.jpg" alt="">
+  <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-zinc-900/80 to-transparent p-4">
+    <h3 class="text-xl font-semibold text-white">Mechatronics</h3>
+    <h5 class="text-xs font-medium text-zinc-200">28 Pins</h5>
+  </div>
+</div>
+<!-- Make the card container relative and remove flex classes -->
+<div class="w-52 h-40 bg-zinc-200 rounded-lg overflow-hidden relative">
+  <img class="absolute inset-0 w-full h-full object-cover" src="https://i.pinimg.com/1200x/17/0b/9f/170b9f85205d2605484b25cde867f75e.jpg" alt="">
+  <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-zinc-900/80 to-transparent p-4">
+    <h3 class="text-xl font-semibold text-white">Women in Stem</h3>
+    <h5 class="text-xs font-medium text-zinc-200">88 Pins</h5>
+  </div>
+</div>
+<!-- Make the card container relative and remove flex classes -->
+<div class="w-52 h-40 bg-zinc-200 rounded-lg overflow-hidden relative">
+  <img class="absolute inset-0 w-full h-full object-cover" src="https://i.pinimg.com/736x/8f/ca/fe/8fcafe9d10d158f0609e6e8c27d463c6.jpg" alt="">
+  <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-zinc-900/80 to-transparent p-4">
+    <h3 class="text-xl font-semibold text-white">Tech core</h3>
+    <h5 class="text-xs font-medium text-zinc-200">46 Pins</h5>
+  </div>
+</div>
+<!-- Make the card container relative and remove flex classes -->
+<div class="w-52 h-40 bg-zinc-200 rounded-lg overflow-hidden relative">
+  <img class="absolute inset-0 w-full h-full object-cover" src="https://i.pinimg.com/736x/2c/87/ac/2c87acc8eaeeedec4edd0b627690358b.jpg" alt="">
+  <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-zinc-900/80 to-transparent p-4">
+    <h3 class="text-xl font-semibold text-white">NY Fashionweek </h3>
+    <h5 class="text-xs font-medium text-zinc-200">78 Pins</h5>
+  </div>
+</div>
+<!-- Make the card container relative and remove flex classes -->
+<div class="w-52 h-40 bg-zinc-200 rounded-lg overflow-hidden relative">
+  <img class="absolute inset-0 w-full h-full object-cover" src="https://i.pinimg.com/736x/8f/f6/bf/8ff6bf4f791a8759d2b21f390aa55a44.jpg" alt="">
+  <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-zinc-900/80 to-transparent p-4">
+    <h3 class="text-xl font-semibold text-white">Nails inspo</h3>
+    <h5 class="text-xs font-medium text-zinc-200"> 56 Pins</h5>
+  </div>
+</div>
+<!-- Make the card container relative and remove flex classes -->
+<div class="w-52 h-40 bg-zinc-200 rounded-lg overflow-hidden relative">
+  <img class="absolute inset-0 w-full h-full object-cover" src="https://i.pinimg.com/1200x/fc/72/55/fc7255efefde58b9b887ec648ecc1d87.jpg" alt="">
+  <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-zinc-900/80 to-transparent p-4">
+    <h3 class="text-xl font-semibold text-white">Hair inspo </h3>
+    <h5 class="text-xs font-medium text-zinc-200">90 Pins</h5>
+  </div>
+</div>
+<!-- Make the card container relative and remove flex classes -->
+<div class="w-52 h-40 bg-zinc-200 rounded-lg overflow-hidden relative">
+  <img class="absolute inset-0 w-full h-full object-cover" src="https://i.pinimg.com/736x/7d/6e/f0/7d6ef06845bce21a7f001c680e228d80.jpg" alt="">
+  <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-zinc-900/80 to-transparent p-4">
+    <h3 class="text-xl font-semibold text-white">Fits inspo</h3>
+    <h5 class="text-xs font-medium text-zinc-200">89 Pins</h5>
+  </div>
+</div><!-- Make the card container relative and remove flex classes -->
+<div class="w-52 h-40 bg-zinc-200 rounded-lg overflow-hidden relative">
+  <img class="absolute inset-0 w-full h-full object-cover" src="https://i.pinimg.com/736x/28/39/1f/28391f4297cfa5a67f4804ff18e008d2.jpg" alt="">
+  <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-zinc-900/80 to-transparent p-4">
+    <h3 class="text-xl font-semibold text-white">Y2K</h3>
+    <h5 class="text-xs font-medium text-zinc-200">96 Pins</h5>
+  </div>
+</div>
+<!-- Make the card container relative and remove flex classes -->
+<div class="w-52 h-40 bg-zinc-200 rounded-lg overflow-hidden relative">
+  <img class="absolute inset-0 w-full h-full object-cover" src="https://i.pinimg.com/1200x/e7/c2/37/e7c237ab9e20baf5b9618b58feed25f6.jpg" alt="">
+  <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-zinc-900/80 to-transparent p-4">
+    <h3 class="text-xl font-semibold text-white">Vogue</h3>
+    <h5 class="text-xs font-medium text-zinc-200">67 Pins</h5>
+  </div>
+</div>
+<!-- Make the card container relative and remove flex classes -->
+<div class="w-52 h-40 bg-zinc-200 rounded-lg overflow-hidden relative">
+  <img class="absolute inset-0 w-full h-full object-cover" src="https://i.pinimg.com/736x/17/90/63/179063290047d466047d57266e123f0f.jpg" alt="">
+  <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-zinc-900/80 to-transparent p-4">
+    <h3 class="text-xl font-semibold text-white">Bella hadid</h3>
+    <h5 class="text-xs font-medium text-zinc-200">78 Pins</h5>
+  </div>
+</div>
+<!-- Make the card container relative and remove flex classes -->
+<div class="w-52 h-40 bg-zinc-200 rounded-lg overflow-hidden relative">
+  <img class="absolute inset-0 w-full h-full object-cover" src="https://i.pinimg.com/736x/03/e4/23/03e423e65586b62a9387cb2b1f17d9f1.jpg" alt="">
+  <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-zinc-900/80 to-transparent p-4">
+    <h3 class="text-xl font-semibold text-white">Academic weapon</h3>
+    <h5 class="text-xs font-medium text-zinc-200">78 Pins</h5>
+  </div>
+</div>
+<!-- Make the card container relative and remove flex classes -->
+<div class="w-52 h-40 bg-zinc-200 rounded-lg overflow-hidden relative">
+  <img class="absolute inset-0 w-full h-full object-cover" src="https://i.pinimg.com/736x/2e/69/ed/2e69edb3ae0688510c09c69c55517d7e.jpg" alt="">
+  <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-zinc-900/80 to-transparent p-4">
+    <h3 class="text-xl font-semibold text-white">Ghibli </h3>
+    <h5 class="text-xs font-medium text-zinc-200">198 Pins</h5>
+  </div>
+</div>
+<!-- Make the card container relative and remove flex classes -->
+<div class="w-52 h-40 bg-zinc-200 rounded-lg overflow-hidden relative">
+  <img class="absolute inset-0 w-full h-full object-cover" src="https://i.pinimg.com/736x/27/cc/e8/27cce874a723e8f4128e56094abe7bf4.jpg" alt="">
+  <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-zinc-900/80 to-transparent p-4">
+    <h3 class="text-xl font-semibold text-white">memes</h3>
+    <h5 class="text-xs font-medium text-zinc-200">89 Pins</h5>
+  </div>
+</div>
+<!-- Make the card container relative and remove flex classes -->
+<div class="w-52 h-40 bg-zinc-200 rounded-lg overflow-hidden relative">
+  <img class="absolute inset-0 w-full h-full object-cover" src="https://i.pinimg.com/736x/50/a0/8f/50a08ff7b8574aff0ac977a65ad2bf35.jpg" alt="">
+  <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-zinc-900/80 to-transparent p-4">
+    <h3 class="text-xl font-semibold text-white">Sylvia Path </h3>
+    <h5 class="text-xs font-medium text-zinc-200">35 Pins</h5>
+  </div>
+</div>
+      <% } %>
+    </div>
+  </div>
+
+  <script>
+    document.querySelector("#uploadicon").addEventListener("click", function () {
+      document.querySelector("#uploadform input").click();
+    });
+    document.querySelector("#uploadform input").addEventListener("change", function () {
+      document.querySelector("#uploadform").submit();
+    });
+  </script>
+
+<%- include('partials/footer.ejs') %>
+

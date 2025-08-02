@@ -1,0 +1,38 @@
+<%- include('partials/header.ejs') %>
+
+<style>
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+
+<div class="min-h-screen bg-zinc-900 text-white px-6 py-10">
+  <h1 class="text-4xl font-bold mb-8 text-center">Your Uploaded Pins</h1>
+
+  <% if (user.posts.length === 0) { %>
+    <p class="text-center text-zinc-400 text-lg">You haven't uploaded any pins yet.</p>
+  <% } else { %>
+    <div class="flex overflow-x-auto space-x-6 scrollbar-hide pb-4">
+      <% user.posts.forEach((post) => { %>
+        <a href="/post/<%= post._id %>" class="min-w-[250px] max-w-xs flex-shrink-0 bg-zinc-800 rounded-xl shadow-lg hover:scale-105 transition-transform duration-300">
+          <img src="/images/uploads/<%= post.image %>" alt="Pin" class="w-full h-60 object-cover rounded-t-xl">
+          <div class="p-4">
+            <p class="text-lg font-semibold text-white mb-1"><%= post.title %></p>
+            <p class="text-sm text-zinc-400 mb-2"><%= post.description %></p>
+            <% if (post.user) { %>
+              <div class="text-xs text-zinc-300">
+                Uploaded by <span class="font-medium text-zinc-100"><%= post.user.fullname %></span> (@<%= post.user.username %>)
+              </div>
+            <% } %>
+          </div>
+        </a>
+      <% }) %>
+    </div>
+  <% } %>
+</div>
+
+<%- include('partials/footer.ejs') %>
